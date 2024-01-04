@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js_intro</title>
+</head>
+<body>
+    <h2>javascript 변수와 출력</h2>
+    <button onclick="variableConsole1()">console에 변수 출력하기</button>
+
+    <button onclick="variableConsole2()">console에 배열 출력하기</button>
+
+    <button onclick="variableConsole3()">console에 배열에 함수 넣고 출력하기</button>
+
+    <h2>javascript 변수 선언 키워드</h2>
+    <button onclick="varExample()">var 예제</button>
+    <button onclick="letExample()">let 예제</button>
+    <button onclick="constExample()">const 예제</button>
+
+    <h2>tag선택, class선택, id선택</h2>
+    <button onclick="changeTextById()">id선택 후 change</button>
+    <p id="change1">변경대상 id</p>
+    <button onclick="changeTextByClass()">class선택 후 change</button>
+    <p class="class1">변경대상 class</p>
+    <p class="class1">변경대상 class</p>
+    <button onclick="changeTextByTag()">tag선택 후 change</button>
+
+    <script>
+        function variableConsole1(){
+            var a = 10;
+            var b = "10";
+            console.log(a+b);
+        }
+        function variableConsole2(){
+            var arr = [10, "20", 30, "40"];
+            var arr2 = [10,20,30,40];
+            arr2.push(50);
+            arr2.forEach((a)=>console.log(a));
+            var total = 0;
+            console.log(arr);
+            for(i=0; i<arr2.length; i++){
+                total += arr2[i];
+            }
+            // console 출력
+            console.log(total);
+            // popup 출력 (확인 누르기 전까지 이후 코드 실행X)
+            alert(total);
+            document.write(total);
+        }
+        function variableConsole3(){
+            var arr = [10, 20, ()=>{console.log("hello world");}];
+            arr[2]();
+        }
+
+        function varExample(){
+            // var는 같은 변수명에 재선언과 재할당 가능
+            var x = 10;
+            var x = 20;
+            console.log("varExample: " + x);
+        }
+        function letExample(){
+            // let은 같은 변수명에 재할당만 가능
+            let x = 10;
+            x = 20;
+            console.log("letExample: " + x);
+        }
+        function constExample(){
+            // const는 같은 변수명에 재선언과 재할당 불가능
+            const x = 10;
+            x = 20;
+            console.log("constExample: " + x);
+        }
+
+        function changeTextById(){
+            document.getElementById("change1").innerHTML = "변경 완료";
+            document.getElementById("change1").style.fontSize = "30px";
+            document.getElementById("change1").style.color = "blue";
+        }
+        function changeTextByClass(){
+            var arr = document.getElementsByClassName("class1");
+            for(i=0; i< arr.length; i++){
+                arr[i].innerHTML = "변경 완료";
+                arr[i].style.fontSize = "20px";
+                arr[i].style.color = "red";
+            }
+        }
+        function changeTextByTag(){
+            
+        }
+    </script>
+</body>
+</html>
