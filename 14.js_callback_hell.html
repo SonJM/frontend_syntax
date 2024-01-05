@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>callback hell</title>
+</head>
+<body>
+    
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        $(document).ready(() => {
+            $.ajax({
+                url: 'https://jsonplaceholder.typicode.com/posts/1',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response){
+                    console.log(response);
+                    $.ajax({
+                        url: 'https://naver.com',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: response,
+                        success: function(response2){
+                            console.log(response2);
+                            $.ajax({
+                                url: 'https://daum.net',
+                                method: 'POST',
+                                dataType: 'json',
+                                data: response,
+                                success: function(response3){
+                                    console.log(response3);
+                                },
+                                error: function(){
+                                    
+                                }
+                            })
+                        },
+                        error: function(){
+                            
+                        }
+                    })
+                },
+                error: function(){
+                    
+                }
+            })
+        })
+    </script>
+</body>
+</html>

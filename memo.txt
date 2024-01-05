@@ -7,3 +7,9 @@ js
 1. head에 script 태그
 2. body에 script 태그
 3. 외부 script import
+
+jquery 라이브러리의 기술 : ajax(외부 API 요청)
+
+외부통신요청(비동기) 
+-> response를 가지고 a작업 
+-> b작업

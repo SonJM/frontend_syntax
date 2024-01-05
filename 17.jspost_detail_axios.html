@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css_bootstrap_postlist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a class="navbar-board" href="/home.html">게시판 서비스</a>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a href="/register.html" class="nav-link">회원가입</a></li>
+            <li class="nav-item"><a href="/post-list.html" class="nav-link">글목록</a></li>
+        </ul>
+    </nav>
+   <div class="container">
+        <div class="page-header"><h1>게시글 상세 조회</h1></div>
+        <div class="float-end">
+            <a href="./7.css_bootstrap_postregister.html"><button type="button" class="btn btn-primary">글쓰기</button></a>
+        </div>
+        <input type="button" class="btn btn-primary" onclick="searchQuery()" value="조회하기">
+        <table class="table">
+            <tr id="id">
+                <td>id : </td>
+                <td></td>
+            </tr>
+            <tr id="title">
+                <td>title : </td>
+                <td></td>
+            </tr>
+            <tr id="contents">
+                <td>contents : </td>
+                <td></td>
+            </tr>
+            <tr id="authorId">
+                <td>authorId : </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        async function callBackImp(){
+            try{
+                let myTarget = document.getElementsByClassName("table")[0];
+                const response1 = await axios.get('https://jsonplaceholder.typicode.com/posts');
+                response1.data.forEach(element => {
+                    myTarget.innerHTML += `<tr><td>${element.id}</td><td>${element.title}</td><td>${element.userId}</td></tr>`
+                });
+            }catch(e){
+                console.log(e);
+            }
+        }
+
+        async function searchQuery(){
+            try{
+                const response1 = await axios.get('https://jsonplaceholder.typicode.com/posts/1');
+                const newTD = document.createElement('TD');
+                document.getElementById('id').appendChild(() =>{
+                    newTD.innerHTML = response1.data.id;
+                    document.getElementById('id').appendChild(newTD);
+                });
+            } catch(e){
+                console.log(e);
+            }
+        }
+    </script>
+</body>
+</html>
